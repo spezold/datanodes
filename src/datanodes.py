@@ -1,8 +1,3 @@
-"""
-A lightweight alternative to `torchdata.nodes`: same compositing idea, but no loading/saving states (for now),
-avoiding memory issues.
-"""
-
 import atexit
 from collections import deque
 from collections.abc import Iterator, Sequence, Iterable
