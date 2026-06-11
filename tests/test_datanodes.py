@@ -1,11 +1,9 @@
 from collections import deque
-from collections.abc import Sequence
+from collections.abc import Iterator, Sequence
 from random import Random
 from time import sleep, time
 from threading import get_ident
 from unittest import TestCase
-
-from collections.abc import Iterator
 
 from datanodes import BaseNode, Batcher, mapper, Loader, RoundRobin, Wrapper, seed_from
 
