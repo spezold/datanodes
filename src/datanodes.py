@@ -7,16 +7,13 @@ import atexit
 from collections import deque
 from collections.abc import Iterator, Sequence, Iterable
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from importlib.metadata import version
 from itertools import islice
 from logging import getLogger, NullHandler
 from random import Random
 from threading import RLock
 from typing import Callable, final, overload, Self
 
-# Following https://github.com/astral-sh/uv/issues/8714#issuecomment-4067303402 (20260331)
-__version__ = version(__package__)
-
+__version__ = "0.1.0"
 
 logger = getLogger(__name__)
 logger.addHandler(NullHandler())
