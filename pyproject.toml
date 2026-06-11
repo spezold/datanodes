@@ -1,0 +1,13 @@
+[project]
+name = "datanodes"
+version = "0.1.0"
+description = "Nodes for data processing pipelines"
+readme = "README.md"
+authors = [
+    { name = "Simon Pezold", email = "simon.pezold@unibas.ch" }
+]
+requires-python = ">=3.14"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
