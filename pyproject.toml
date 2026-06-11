@@ -3,6 +3,8 @@ name = "datanodes"
 description = "Nodes for data processing pipelines"
 dynamic = ["version"]
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [
     { name = "Simon Pezold", email = "simon.pezold@unibas.ch" }
 ]
