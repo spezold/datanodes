@@ -36,9 +36,40 @@ for epoch in range(3):
         collected_batches.append(batch)
     print(f"Epoch {epoch}: {collected_batches}")
 ```
+
 Output:
+
 ```
 Epoch 0: [['a', 'b', 0, 'A'], ['c', 1, 2, 3], [4, 'B', 'C', 'D'], ['E', 'F', 'G']]
 Epoch 1: [[0, 1, 'a', 'A'], ['b', 'B', 'c', 2], [3, 'C', 'D', 'E'], ['F', 4, 'G']]
 Epoch 2: [['a', 0, 1, 'b'], [2, 3, 4, 'c'], ['A', 'B', 'C', 'D'], ['E', 'F', 'G']]
+```
+
+Using `set_epoch()` on the `Loader` lets us continue where we left off:
+
+```python
+from datanodes import Batcher, RoundRobin, Loader, Wrapper
+
+wrappers = [Wrapper(range(5)), Wrapper("abc"), Wrapper("ABCDEFG")]
+node = RoundRobin(wrappers, shuffle=True, seed=0xC0FFEE)
+node = Batcher(node, batch_size=4, drop_last=False)
+loader = Loader(node)
+
+START_FROM_EPOCH = 2
+
+loader.set_epoch(START_FROM_EPOCH)
+
+for epoch in range(START_FROM_EPOCH, 5):
+    collected_batches = []
+    for batch in loader:
+        collected_batches.append(batch)
+    print(f"Epoch {epoch}: {collected_batches}")
+```
+
+Output:
+
+```
+Epoch 2: [['a', 0, 1, 'b'], [2, 3, 4, 'c'], ['A', 'B', 'C', 'D'], ['E', 'F', 'G']]
+Epoch 3: [[0, 1, 'A', 2], ['B', 'a', 3, 'C'], ['b', 'c', 4, 'D'], ['E', 'F', 'G']]
+Epoch 4: [['A', 'a', 'b', 'B'], [0, 1, 'c', 'C'], ['D', 'E', 2, 'F'], ['G', 3, 4]]
 ```
